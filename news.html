@@ -213,14 +213,22 @@
                         var chartData = res.results;
                         var date = [];
                         var confirm = [];
+                        var datalist = [];
                         for (var i in chartData) {
                             var dataTime = new Date(chartData[i].updateTime);
                             var showTime = [dataTime.getFullYear(), dataTime.getMonth() + 1, dataTime.getDate()].join('/');
-                            if (date.includes(showTime) || chartData[i].confirmed == 0) {
-                                continue;
+                            var dataCount = chartData[i].confirmedCount?chartData[i].confirmedCount:chartData[i].confirmed;
+
+                            if(!datalist[showTime]||datalist[showTime]<dataCount){
+                                datalist[showTime] = dataCount;
                             }
-                            date.push(showTime);
-                            confirm.push(chartData[i].confirmed);
+
+                        }
+
+                        // use data
+                        for (var i in datalist) {
+                            date.push(i);
+                            confirm.push(datalist[i]);
                         }
 
                         var title = "全国确诊数据";
@@ -239,17 +247,28 @@
                         var chartData = res.results;
                         var date = [];
                         var confirm = [];
+                        var datalist = [];
+
                         for (var i in chartData) {
                             var dataTime = new Date(chartData[i].updateTime);
                             var showTime = [dataTime.getFullYear(), dataTime.getMonth() + 1, dataTime.getDate()].join('/');
                             if (date.includes(showTime)) {
                                 continue;
                             }
-                            date.push(showTime);
-                            confirm.push(chartData[i].confirmedCount);
+                            if (!datalist[showTime] || datalist[showTime] < chartData[i].confirmedCount) {
+                                datalist[showTime] = chartData[i].confirmedCount;
+                            }
+
                         }
 
-                        var title = "确诊("+chartData[0].country + " - " + chartData[0].provinceShortName+")";
+                        // use data
+                        for (var i in datalist) {
+                            date.push(i);
+                            confirm.push(datalist[i]);
+                        }
+
+
+                        var title = "确诊(" + chartData[0].country + " - " + chartData[0].provinceShortName + ")";
                         initDetailChart(date, confirm, title);
                         return;
                     }
