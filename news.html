@@ -61,8 +61,12 @@
     <div class="alert alert-success core-data" style="height: 100%">
     </div>
 
+    <div class="chart" id="trend-chart" style="height: 25rem">
 
-    <div class="items">
+    </div>
+
+    <hr/>
+    <div class="items" >
     </div>
 </div>
 <div class="page-footer clear">
@@ -84,12 +88,14 @@
 </html>
 <script type="text/javascript" src="./static/js/zui/js/zui.js"></script>
 <script type="text/javascript" src="./static/js/zui/lib/chosen/chosen.min.js"></script>
+<script type="text/javascript" src="./static/js/echart/echarts4.min.js"></script>
 <script type="text/javascript">
     var dataUrl  = "http://lab.isaaclin.cn/nCoV/";
     $(document).ready(function () {
         initChosen();
         initNews('');
         initCoreData('');
+        initChart('');
     });
 
     var initNews = function(province) {
@@ -150,6 +156,7 @@
                         var province = $('select.chosen-select').val();
                         initNews(province);
                         initCoreData(province);
+                        initChart(province);
                     });
 
                     return;
@@ -158,7 +165,6 @@
             }
         });
     };
-
 
     var initCoreData = function (province) {
 
@@ -194,6 +200,243 @@
 
             }
         })
+
+    };
+
+    var initChart = function (province) {
+        if (province==''){
+            $.ajax({
+                url: dataUrl + 'api/overall?latest=0',
+                type: 'get',
+                success: function (res) {
+                    if (res.success === true) {
+                        var chartData = res.results;
+                        var date = [];
+                        var confirm = [];
+                        for (var i in chartData) {
+                            var dataTime = new Date(chartData[i].updateTime);
+                            var showTime = [dataTime.getFullYear(), dataTime.getMonth() + 1, dataTime.getDate()].join('/');
+                            if (date.includes(showTime) || chartData[i].confirmed == 0) {
+                                continue;
+                            }
+                            date.push(showTime);
+                            confirm.push(chartData[i].confirmed);
+                        }
+
+                        var title = "全国确诊数据";
+                        initDetailChart(date, confirm, title);
+                        return;
+                    }
+                    alert("获取数据失败");
+                }
+            });
+        }else{
+            $.ajax({
+                url: dataUrl + 'api/area?latest=0&province=' + province,
+                type: 'get',
+                success: function (res) {
+                    if (res.success === true) {
+                        var chartData = res.results;
+                        var date = [];
+                        var confirm = [];
+                        for (var i in chartData) {
+                            var dataTime = new Date(chartData[i].updateTime);
+                            var showTime = [dataTime.getFullYear(), dataTime.getMonth() + 1, dataTime.getDate()].join('/');
+                            if (date.includes(showTime)) {
+                                continue;
+                            }
+                            date.push(showTime);
+                            confirm.push(chartData[i].confirmedCount);
+                        }
+
+                        var title = "确诊("+chartData[0].country + " - " + chartData[0].provinceShortName+")";
+                        initDetailChart(date, confirm, title);
+                        return;
+                    }
+                    alert("获取数据失败");
+                }
+            });
+        }
+
+
+        var initDetailChart = function (date,confirm,title) {
+            var orderTraceContainer = echarts.init(document.getElementById('trend-chart'));
+            orderTraceContainer.showLoading({
+                text: '加载中...',
+                effect: 'whirling'
+            });
+
+
+            echartsOption  = {
+                backgroundColor: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: '#c86589'
+                    },
+                    {
+                        offset: 1,
+                        color: '#06a7ff'
+                    }
+                ], false),
+                title: {
+                    text: title,
+                    left: "center",
+                    bottom: "2%",
+                    textStyle: {
+                        color: "#fff",
+                        fontSize: 16
+                    }
+                },
+                grid: {
+                    top: '20%',
+                    left: '5%',
+                    right: '1%',
+                    bottom: '15%',
+                    containLabel: true,
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    // 时间
+                    data: date,
+                    axisLabel: {
+                        margin: 30,
+                        color: '#ffffff63'
+                    },
+                    axisLine: {
+                        show: false
+                    },
+                    axisTick: {
+                        show: true,
+                        length: 25,
+                        lineStyle: {
+                            color: "#ffffff1f"
+                        }
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: '#ffffff1f'
+                        }
+                    }
+                },
+                yAxis: [{
+                    type: 'value',
+                    position: 'right',
+                    axisLabel: {
+                        margin: 20,
+                        color: '#ffffff63'
+                    },
+
+                    axisTick: {
+                        show: true,
+                        length: 15,
+                        lineStyle: {
+                            color: "#ffffff1f",
+                        }
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: '#ffffff1f'
+                        }
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#fff',
+                            width: 2
+                        }
+                    }
+                }],
+                series: [
+                    {
+                    name: '总数量',
+                    type: 'line',
+                    smooth: true, //是否平滑曲线显示
+                    showAllSymbol: true,
+                    symbol: 'circle',
+                    symbolSize: 6,
+                    lineStyle: {
+                        normal: {
+                            color: "#fff", // 线条颜色
+                        },
+                    },
+                    label: {
+                        show: true,
+                        position: 'top',
+                        textStyle: {
+                            color: '#fff',
+                        }
+                    },
+                    itemStyle: {
+                        color: "red",
+                        borderColor: "#fff",
+                        borderWidth: 3
+                    },
+                    tooltip: {
+                        show: false
+                    },
+                    areaStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: '#eb64fb'
+                                },
+                                {
+                                    offset: 1,
+                                    color: '#3fbbff0d'
+                                }
+                            ], false),
+                        }
+                    },
+                    data: confirm
+                }
+                // {
+                //     name: '总数量',
+                //     type: 'line',
+                //     smooth: true, //是否平滑曲线显示
+                //     showAllSymbol: true,
+                //     symbol: 'circle',
+                //     symbolSize: 6,
+                //     lineStyle: {
+                //         normal: {
+                //             color: "#fff", // 线条颜色
+                //         },
+                //     },
+                //     label: {
+                //         show: true,
+                //         position: 'top',
+                //         textStyle: {
+                //             color: '#fff',
+                //         }
+                //     },
+                //     itemStyle: {
+                //         color: "red",
+                //         borderColor: "#fff",
+                //         borderWidth: 3
+                //     },
+                //     tooltip: {
+                //         show: false
+                //     },
+                //     areaStyle: {
+                //         normal: {
+                //             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                //                     offset: 0,
+                //                     color: '#eb64fb'
+                //                 },
+                //                 {
+                //                     offset: 1,
+                //                     color: '#3fbbff0d'
+                //                 }
+                //             ], false),
+                //         }
+                //     },
+                //     data: [693, 338, 185, 331, 389, 324, 487, 1400, 1100, 1200]
+                // }
+                ]
+            };;
+            orderTraceContainer.hideLoading();
+            orderTraceContainer.setOption(echartsOption);
+        }
 
     }
 </script>
