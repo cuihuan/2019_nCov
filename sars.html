@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+      <title>2020年武汉新型冠状病毒可视化</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="2020 wuhan Novel coronavirus">
+
+    <meta name="keywords" content="2020 wuhan Novel coronavirus">
+    <meta name="author" content="cuihuan">
+    <meta name="robots" content="index,follow">
+
+
+    <link rel="stylesheet" type="text/css" href="./static/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="./static/js/zui/css/zui-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="./static/js/zui/css/zui.css"/>
+
+    <script type="text/javascript" src="./static/js/jquery/jquery2.0.min.js"></script>
+    <script type="text/javascript" src="./static/js/common.js"></script>
+
+</head>
+
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">武汉加油</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <span class="muted">武汉加油</span>
+            </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li ><a href="./novelCoronavirus.html" target="_self"><i class="icon icon-line-chart"></i> 非典对比</a></li>
+                <li class="active"><a href="./news.html" target="_self"><i class="icon icon-newspaper-o"></i> 最新新闻</a></li>
+                <li><a href="./sars.html" target="_self"><i class="icon icon-globe"></i> sars对比</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="./statement.html" target="_blank"><i class="icon icon-chat"></i> 声明</a></li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<div class="container">
+    <div class="panel">
+        <div class="panel-body">
+            <div class="alert alert-primary" style="height: 100%">
+                <h2 style="text-align: center">开发中，展现和sars数据对比，看看啥时候到达峰值
+                </h2>
+
+                <span style="text-align: center">
+                                <p class="mg10">有任何问题！请联系 <a href="mailto:grubbych@126.com">cuihuan</a></p>
+                            </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-footer clear">
+
+    <div class="copyright" style="color:#999999">
+        <div >
+            请勿用于任务商业用途
+        </div>
+        <div id="cr_1">
+             交流网站：<a href="">cuihuan.net</a>
+        </div>
+        <div id="cr_2">Copyright © <span class=""> cuihuan </span>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript" src="./static/js/zui/js/zui.js"></script>
+
+<script type="text/javascript">
+    var dataUrl  = "http://lab.isaaclin.cn/nCoV/";
+    $(document).ready(function () {
+        initNews();
+    });
+
+    var getNews = function() {
+        $.ajax({
+            url: dataUrl + 'api/news',
+            type: 'get',
+            success: function (res) {
+                if (res.success===true ){
+                    var news = res.results;
+                    var html = "";
+                    for (var i in news) {
+                         html +='<div class="item">\n' +
+                            '            <div class="item-heading">\n' +
+                            '                <div class="pull-right label label-success news-province">'+news[i].provinceName+'</div>\n' +
+                            '                <h4><a href="'+news[i].sourceUrl+'" class="news-title">'+news[i].title+'</a></h4>\n' +
+                            '            </div>\n' +
+                            '            <div class="item-content news-detail" >。\n' + news[i].summary+
+                            '            </div>\n' +
+                            '            <div class="item-footer">\n' +
+                            '                <a href="#" class="text-muted"><i class="icon-comments news-source"></i> '+news[i].infoSource+'</a> &nbsp; <span class="text-muted news-time">'+new Date(news[i].pubDate).toISOString()+'</span>\n' +
+                            '            </div>\n' +
+                            '        </div>';
+                    }
+
+                    $(".items").html(html);
+
+                    return ;
+                }
+                alert("获取数据失败");
+
+            }
+        })
+
+    };
+    var initNews = function () {
+        var news = getNews();
+    }
+</script>
