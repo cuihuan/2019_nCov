@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="./static/css/common.css"/>
     <link rel="stylesheet" type="text/css" href="./static/js/zui/css/zui-theme.css"/>
     <link rel="stylesheet" type="text/css" href="./static/js/zui/css/zui.css"/>
+    <link rel="stylesheet" type="text/css" href="./static/js/zui/lib/chosen/chosen.min.css"/>
 
     <script type="text/javascript" src="./static/js/jquery/jquery2.0.min.js"></script>
     <script type="text/javascript" src="./static/js/common.js"></script>
@@ -52,6 +53,15 @@
 </nav>
 
 <div class="container">
+    <div class="alert alert-primary" style="height: 100%">
+        各省最新疫情信息：
+        <div id="provinceChosen"></div>
+    </div>
+
+    <div class="alert alert-success core-data" style="height: 100%">
+    </div>
+
+
     <div class="items">
     </div>
 </div>
@@ -73,16 +83,18 @@
 </body>
 </html>
 <script type="text/javascript" src="./static/js/zui/js/zui.js"></script>
-
+<script type="text/javascript" src="./static/js/zui/lib/chosen/chosen.min.js"></script>
 <script type="text/javascript">
     var dataUrl  = "http://lab.isaaclin.cn/nCoV/";
     $(document).ready(function () {
-        initNews();
+        initChosen();
+        initNews('');
+        initCoreData('');
     });
 
-    var getNews = function() {
+    var initNews = function(province) {
         $.ajax({
-            url: dataUrl + 'api/news',
+            url: dataUrl + 'api/news?province=' + province,
             type: 'get',
             success: function (res) {
                 if (res.success===true ){
@@ -112,7 +124,75 @@
         })
 
     };
-    var initNews = function () {
-        var news = getNews();
+
+    var initChosen = function () {
+        $.ajax({
+            url: dataUrl + 'api/provinceName',
+            type: 'get',
+            success: function (res) {
+                if (res.success===true ){
+                    var provinces = res.results;
+                    var html = '<select data-placeholder="选择一个省份，支持缩写" class="chosen-select form-control" tabindex="2">' +
+                        '<option value="">全国</option>';
+                    for (var i in provinces) {
+                        html += '<option value="' + provinces[i] + '">' + provinces[i] + '</option>';
+                    }
+                    html += '</select>';
+                    $("#provinceChosen").html(html);
+
+                    $('select.chosen-select').chosen({
+                        no_results_text: '没有找到',    // 当检索时没有找到匹配项时显示的提示文本
+                        disable_search_threshold: 4, // 10 个以下的选择项则不显示检索框
+                        search_contains: true         // 从任意位置开始检索
+                    });
+
+                    $('select.chosen-select').on('change', function () {
+                        var province = $('select.chosen-select').val();
+                        initNews(province);
+                        initCoreData(province);
+                    });
+
+                    return;
+                }
+                alert("获取数据失败");
+            }
+        });
+    };
+
+
+    var initCoreData = function (province) {
+
+        $.ajax({
+            url: dataUrl + 'api/area?latest=1&province=' + province,
+            type: 'get',
+            success: function (res) {
+                if (res.success === true) {
+                    var outBreakData = res.results;
+                    var confirm  = 0;
+                    var suspectedCount  = 0;
+                    var curedCount  = 0;
+                    var deadCount  = 0;
+
+                    for (var i in outBreakData) {
+                        confirm+=outBreakData[i].confirmedCount;
+                        suspectedCount+=outBreakData[i].suspectedCount;
+                        curedCount+=outBreakData[i].curedCount;
+                        deadCount+=outBreakData[i].deadCount;
+                    }
+                    var html = ' 疫情数据:\n' +
+                        '        <div><span class="label label-warning data-confirmed">确诊</span>：'+confirm+' | <span class="label label-default data-suspected">疑似</span>：'+suspectedCount+'</div>\n' +
+                        '        <div><span class="label label-success data-cured">治愈</span>：'+curedCount+' | <span class="label label-danger data-dead">死亡</span>：'+deadCount+'</div>\n' +
+                        '    ';
+
+
+                    $(".core-data").html(html);
+
+                    return;
+                }
+                alert("获取数据失败");
+
+            }
+        })
+
     }
 </script>
