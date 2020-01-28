@@ -1,0 +1,38 @@
+#menuuu{
+    position:absolute;
+    border: 1px outset #F6F6F6 !important;
+    border-color:#FFFFFF;
+    z-index:10000;
+    left:300px;
+    top:200px;
+    display:none;
+    width:100px;
+    height:65px;
+    background: #CCCCCC;
+    filter:alpha(opacity:80);
+    opacity:0.8;
+    overflow: hidden;
+}
+#menuuu ul{
+    padding-top: 5px;
+    padding-left: 2px;
+    margin:0px;
+    list-style-type:none;
+    vertical-align:middle;
+}
+#menuuu ul li {
+    padding:0px;
+    margin-top:1px;
+    border-top: 1px solid #F6F6F6 !important;
+    border-bottom: 1px outset #F6F6F6 !important;
+    border-color:#FFFFFF;
+    font-family:"微软雅黑";
+    width:96px;
+    font-size:13px;
+    vertical-align: middle;
+    text-align:center;
+}
+#menuuu font {
+    padding-left: 4px;
+    vertical-align:top ;
+}
