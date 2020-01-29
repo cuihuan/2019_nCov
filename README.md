@@ -5,11 +5,12 @@
 http://cuihuan.net/wuhan/news.html
 
 # 相关数据
-## nCoV
-主要来自
+## nCoV 数据
+主要来自丁香园
 感谢Isaac Lin提供数据接口：http://lab.isaaclin.cn/nCoV/
+感谢Isaac Lin提供抓取脚本：https://github.com/BlankerL/DXY-2019-nCoV-Crawler
 
-## sars
+## sars数据
 数据主要来自[世界卫生组织](https://www.who.int/csr/sars/country/en/)
 
 感谢[花季](895126066@qq.com) 协助抓取数据
