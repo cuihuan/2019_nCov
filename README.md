@@ -1,8 +1,8 @@
 # 武汉2020新型冠状病毒可视化
 本项目为武汉2019新型冠状病毒（2019-nCoV）疫情状况进行可视化。重点针对和sars的对比以及分省份数据趋势可视化。
 
-![demo_hubei](https://github.com/cuihuan/2020_wuhan/tree/master/static/images/demo_hubei.png)
-![demo_sars](https://github.com/cuihuan/2020_wuhan/tree/master/static/images/demo_sars.png)
+![demo_hubei](http://cuihuan.net/wuhan/static/images/demo_hubei.png)
+![demo_sars](http://cuihuan.net/wuhan/static/images/demo_sars.png)
 
 
 # 页面地址
