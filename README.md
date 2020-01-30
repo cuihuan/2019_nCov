@@ -1,16 +1,17 @@
 # 武汉2020新型冠状病毒可视化
-本项目为2019新型冠状病毒（2019-nCoV）疫情状况进行可视化
-[![demo_hubei](./static/images/demo_hubei.jpeg)](./static/images/demo_hubei.jpeg)
-[![demo_sars](./static/images/demo_sars.jpeg)](./static/images/demo_sars.jpeg)
+本项目为武汉2019新型冠状病毒（2019-nCoV）疫情状况进行可视化。重点针对和sars的对比以及分省份数据趋势可视化。
+
+[demo_hubei](./static/images/demo_hubei.jpeg)
+[demo_sars](./static/images/demo_sars.jpg)
 
 
-# 部署页面
+# 页面地址
 http://cuihuan.net/wuhan/news.html
 
-# 相关数据
+# 数据来源
 ## nCoV 数据
-主要来自丁香园
 感谢Isaac Lin提供数据接口：https://lab.isaaclin.cn/nCoV/
+
 感谢Isaac Lin提供抓取脚本：https://github.com/BlankerL/DXY-2019-nCoV-Crawler
 
 ## sars数据
