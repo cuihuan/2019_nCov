@@ -85,36 +85,36 @@
 <script type="text/javascript" src="./static/js/zui/js/zui.js"></script>
 
 <script type="text/javascript">
-    var dataUrl  = "https://lab.isaaclin.cn/nCoV/";
+    var dataUrl = "https://lab.isaaclin.cn/nCoV/";
     $(document).ready(function () {
         initNews();
     });
 
-    var getNews = function() {
+    var getNews = function () {
         $.ajax({
             url: dataUrl + 'api/news',
             type: 'get',
             success: function (res) {
-                if (res.success===true ){
+                if (res.success === true) {
                     var news = res.results;
                     var html = "";
                     for (var i in news) {
-                         html +='<div class="item">\n' +
+                        html += '<div class="item">\n' +
                             '            <div class="item-heading">\n' +
-                            '                <div class="pull-right label label-success news-province">'+news[i].provinceName+'</div>\n' +
-                            '                <h4><a href="'+news[i].sourceUrl+'" class="news-title">'+news[i].title+'</a></h4>\n' +
+                            '                <div class="pull-right label label-success news-province">' + news[i].provinceName + '</div>\n' +
+                            '                <h4><a href="' + news[i].sourceUrl + '" class="news-title">' + news[i].title + '</a></h4>\n' +
                             '            </div>\n' +
-                            '            <div class="item-content news-detail" >。\n' + news[i].summary+
+                            '            <div class="item-content news-detail" >。\n' + news[i].summary +
                             '            </div>\n' +
                             '            <div class="item-footer">\n' +
-                            '                <a href="#" class="text-muted"><i class="icon-comments news-source"></i> '+news[i].infoSource+'</a> &nbsp; <span class="text-muted news-time">'+new Date(news[i].pubDate).toISOString()+'</span>\n' +
+                            '                <a href="#" class="text-muted"><i class="icon-comments news-source"></i> ' + news[i].infoSource + '</a> &nbsp; <span class="text-muted news-time">' + new Date(news[i].pubDate).toISOString() + '</span>\n' +
                             '            </div>\n' +
                             '        </div>';
                     }
 
                     $(".items").html(html);
 
-                    return ;
+                    return;
                 }
                 alert("获取数据失败");
 
@@ -124,5 +124,14 @@
     };
     var initNews = function () {
         var news = getNews();
-    }
+    };
+
+    // 增加访问统计，确认流量
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?15d3caeed62b266d96dd734894786f13";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
 </script>
