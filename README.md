@@ -2,12 +2,11 @@
 本项目为武汉2019新型冠状病毒（2019-nCoV）疫情状况进行可视化。
 重点针对和sars的对比以及分省份数据趋势可视化。
 
+**页面地址**：http://cuihuan.net/wuhan/news.html
+
 <img style="width:80px;" src="http://cuihuan.net/wuhan/static/images/demo_hubei.png"  alt="demo_hubei"/>
 <img style="width:80px;" src="http://cuihuan.net/wuhan/static/images/demo_sars.png"  alt="demo_sars"/>
 
-
-# 页面地址
-http://cuihuan.net/wuhan/news.html
 
 # 数据来源
 ## nCoV 数据
