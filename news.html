@@ -41,11 +41,11 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li ><a href="./nCoV.html" target="_self"><i class="icon icon-line-chart"></i> 数据可视化</a></li>
-                <li ><a href="./news.html" target="_self"><i class="icon icon-newspaper-o"></i> 最新新闻</a></li>
+                <li class="active"><a href="./news.html" target="_self"><i class="icon icon-newspaper-o"></i> 最新新闻</a></li>
                 <li><a href="./sars.html" target="_self"><i class="icon icon-globe"></i> sars对比</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="./statement.html" target="_blank"><i class="icon icon-chat"></i> 声明</a></li>
+                <li><a href="./statement.html" target="_blank"><i class="icon icon-chat"></i> 声明</a></li>
             </ul>
         </div>
 
@@ -225,10 +225,16 @@
 
                         }
 
+                        // 时间排序
+                        const dataListOrdered = {};
+                        Object.keys(datalist).sort().forEach(function(key) {
+                            dataListOrdered[key] = datalist[key];
+                        });
+
                         // use data
-                        for (var i in datalist) {
+                        for (var i in dataListOrdered) {
                             date.push(i);
-                            confirm.push(datalist[i]);
+                            confirm.push(dataListOrdered[i]);
                         }
 
                         var title = "全国确诊数据";
@@ -261,10 +267,16 @@
 
                         }
 
+                        // 时间排序
+                        const dataListOrdered = {};
+                        Object.keys(datalist).sort().forEach(function (key) {
+                            dataListOrdered[key] = datalist[key];
+                        });
+
                         // use data
-                        for (var i in datalist) {
+                        for (var i in dataListOrdered) {
                             date.push(i);
-                            confirm.push(datalist[i]);
+                            confirm.push(dataListOrdered[i]);
                         }
 
 

@@ -148,10 +148,16 @@
 
                     }
 
+                    // 时间排序
+                    const dataListOrdered = {};
+                    Object.keys(datalist).sort().forEach(function (key) {
+                        dataListOrdered[key] = datalist[key];
+                    });
+
                     // use data
-                    for (var i in datalist) {
+                    for (var i in dataListOrdered) {
                         date.push(i);
-                        confirmNCoV.push(datalist[i]);
+                        confirmNCoV.push(dataListOrdered[i]);
                     }
 
                     // 补充sars提前的日期
