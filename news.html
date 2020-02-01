@@ -41,7 +41,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li ><a href="./nCoV.html" target="_self"><i class="icon icon-line-chart"></i> 数据可视化</a></li>
-                <li class="active"><a href="./news.html" target="_self"><i class="icon icon-newspaper-o"></i> 最新新闻</a></li>
+                <li class="active"><a href="./news.html" target="_self"><i class="icon icon-newspaper-o"></i> 分省数据</a></li>
                 <li><a href="./sars.html" target="_self"><i class="icon icon-globe"></i> sars对比</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -64,6 +64,22 @@
     <div class="chart" id="trend-chart" style="height: 25rem">
 
     </div>
+    <hr/>
+
+    <div class="cities" style="height: 100%;">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>城市</th>
+                <th>确诊</th>
+                <th>死亡</th>
+                <th>治愈</th>
+            </tr>
+            </thead>
+            <tbody class="cities-body"></tbody>
+
+        </table>
+    </div>
 
     <hr/>
     <div class="items" >
@@ -76,7 +92,7 @@
             请勿用于任务商业用途
         </div>
         <div id="cr_1">
-             交流网站：<a href="">cuihuan.net</a>
+             交流网站：<a href="http://cuihuan.net">cuihuan.net</a>
         </div>
         <div id="cr_2">Copyright © <span class=""> cuihuan </span>
         </div>
@@ -95,13 +111,13 @@
 
     $(document).ready(function () {
         initChosen();
-        initNews('');
-        initCoreData('');
-        initChart('');
+        initNews('湖北省');
+        initCoreData('湖北省');
+        initChart('湖北省');
     });
 
     var initNews = function(province) {
-        var xhr = $.ajax({
+        $.ajax({
             url: dataUrl + 'api/news?province=' + province,
             type: 'get',
             success: function (res) {
@@ -148,7 +164,11 @@
                     var html = '<select data-placeholder="选择一个省份，支持缩写" class="chosen-select form-control" tabindex="2">' +
                         '<option value="">全国</option>';
                     for (var i in provinces) {
-                        html += '<option value="' + provinces[i] + '">' + provinces[i] + '</option>';
+                        if(provinces[i]=="湖北省"){
+                            html += '<option value="' + provinces[i] + '" selected="selected">' + provinces[i] + '</option>';
+                        }else{
+                            html += '<option value="' + provinces[i] + '">' + provinces[i] + '</option>';
+                        }
                     }
                     html += '</select>';
                     $("#provinceChosen").html(html);
@@ -192,6 +212,7 @@
                     var curedCount  = 0;
                     var deadCount  = 0;
 
+                    // 总数
                     for (var i in outBreakData) {
                         confirm+=outBreakData[i].confirmedCount;
                         suspectedCount+=outBreakData[i].suspectedCount;
@@ -206,6 +227,23 @@
 
 
                     $(".core-data").html(html);
+
+                    // 城市数据
+                    var cities = res.results[0].cities;
+                    html = "";
+                    for (var i in cities){
+                        html+= '\n' +
+                            ' <tr>\n' +
+                            ' <td>'+cities[i]["cityName"]+'</td>\n' +
+                            ' <td>'+cities[i]["confirmedCount"]+'</td>\n' +
+                            ' <td>'+cities[i]["curedCount"]+'</td>\n' +
+                            ' <td>'+cities[i]["deadCount"]+'</td>\n' +
+                            ' </tr>\n';
+                    }
+                    $(".cities-body").html(html);
+                    if(province==""){
+                        $(".cities-body").empty();
+                    }
 
                     return;
                 }
