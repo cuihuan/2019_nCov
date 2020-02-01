@@ -4,8 +4,7 @@
 
 **页面地址**：http://cuihuan.net/wuhan/news.html
 
-<img style="width:80px;" src="http://cuihuan.net/wuhan/static/images/demo_hubei.png"  alt="demo_hubei"/>
-<img style="width:80px;" src="http://cuihuan.net/wuhan/static/images/demo_sars.png"  alt="demo_sars"/>
+<img  width="200px" src="http://cuihuan.net/wuhan/static/images/demo_hubei.png"  alt="demo_hubei"/><img width="200px" src="http://cuihuan.net/wuhan/static/images/demo_sars.png"  alt="demo_sars"/>
 
 
 # 数据来源
