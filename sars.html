@@ -39,8 +39,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li ><a href="./nCoV.html" target="_self"><i class="icon icon-line-chart"></i> 数据可视化</a></li>
-                <li><a href="./news.html" target="_self"><i class="icon icon-newspaper-o"></i> 最新新闻</a></li>
+                <li ><a href="./nCoV.html" target="_self"><i class="icon icon-line-chart"></i> 全国数据</a></li>
+                <li><a href="./news.html" target="_self"><i class="icon icon-newspaper-o"></i> 分省数据</a></li>
                 <li class="active"><a href="./sars.html" target="_self"><i class="icon icon-globe"></i> sars对比</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -116,7 +116,7 @@
     var dataUrlBackup  = "https://lab.ahusmart.com/nCoV/";
 
     $(document).ready(function () {
-        initChart('');
+        initChart();
     });
 
     var sarsData=[1114,1179,1241,1286,1346,1504,1911,1938,1996,2037,2172,2226,2269,2307,2389,2440,2631,2673,2727,2781,2899,2899,3390,3464,3800,3947,4152,4329,4537,4941,5128,5328,5511,5693,6034,6172,6340,6491,6622,6731,6881,6983,7061,7131,7172,7194,7295,7350,7387,7478,7549,7573,7629,7648,7665,7718,7732,7744,7759,7756,7756,7755,7756,7762,7769,7771,7772,7776,7780,7779,7761,7777,7777,7774,7769,7769,7765,7764,7761,7761,7759,7757,7757,7757,7754,7754,7754,7754];
@@ -128,7 +128,7 @@
     }
 
     var nCovData = [];
-    var initChart = function (province) {
+    var initChart = function () {
         $.ajax({
             url: dataUrl + 'api/overall?latest=0',
             type: 'get',
