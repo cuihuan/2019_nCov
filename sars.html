@@ -128,7 +128,6 @@
     }
 
     var nCovData = [];
-    nCovData["2019"] = "";
     var initChart = function (province) {
         $.ajax({
             url: dataUrl + 'api/overall?latest=0',
@@ -139,6 +138,12 @@
                     var date = [];
                     var confirmNCoV = [];
                     var datalist = [];
+                    // init 初始数据
+                    datalist['2020/1/24'] = 897;
+                    datalist['2020/1/25'] = 1408;
+                    datalist['2020/1/26'] = 2076;
+                    datalist['2020/1/27'] = 2857;
+                    datalist['2020/1/28'] = 4630;
                     for (var i in chartData) {
                         var dataTime = new Date(chartData[i].updateTime);
                         var showTime = [dataTime.getFullYear(), dataTime.getMonth() + 1, dataTime.getDate()].join('/');
