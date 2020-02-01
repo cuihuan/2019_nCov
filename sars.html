@@ -113,6 +113,8 @@
 
 <script type="text/javascript">
     var dataUrl = "https://lab.isaaclin.cn/nCoV/";
+    var dataUrlBackup  = "https://lab.ahusmart.com/nCoV/";
+
     $(document).ready(function () {
         initChart('');
     });
@@ -176,6 +178,11 @@
                     return;
                 }
                 alert("获取数据失败");
+            }, error: function (res) {
+                if (res.state() === "rejected" && !this.url.includes(dataUrlBackup)) {
+                    this.url = this.url.replace(dataUrl,dataUrlBackup);
+                    $.ajax(this);
+                }
             }
         });
 

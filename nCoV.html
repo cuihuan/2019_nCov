@@ -86,12 +86,14 @@
 
 <script type="text/javascript">
     var dataUrl = "https://lab.isaaclin.cn/nCoV/";
+    var dataUrlBackup  = "https://lab.ahusmart.com/nCoV/";
+
     $(document).ready(function () {
         initNews();
     });
 
     var getNews = function () {
-        $.ajax({
+        var xhr = $.ajax({
             url: dataUrl + 'api/news',
             type: 'get',
             success: function (res) {
@@ -118,7 +120,12 @@
                 }
                 alert("获取数据失败");
 
-            }
+            },
+            error: function (res) {
+                if (res.state() === "rejected" && !this.url.includes(dataUrlBackup)) {
+                    this.url = this.url.replace(dataUrl, dataUrlBackup);
+                    $.ajax(this);
+                }            }
         })
 
     };
