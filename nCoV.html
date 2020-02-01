@@ -98,6 +98,7 @@
     var dataUrlBackup  = "https://lab.ahusmart.com/nCoV/";
 
     $(document).ready(function () {
+        initCoreData();
         initTrendChart();
         initAddChart();
     });
@@ -604,6 +605,40 @@
             orderTraceContainer.hideLoading();
             orderTraceContainer.setOption(echartsOption);
         }
+    };
+
+    var initCoreData = function (province) {
+
+        $.ajax({
+            url: dataUrl + 'api/overall?latest=1',
+            type: 'get',
+            success: function (res) {
+                if (res.success === true) {
+                    var data = res.results[0];
+
+
+                    var html = ' 疫情数据:\n' +
+                        '        <div>' +
+                        '<span class="label label-warning data-confirmed">确诊</span>：'+data.confirmedCount+' &nbsp;&nbsp;&nbsp; ' +
+                        '<span class="label label-success data-cured">治愈</span>：'+data.curedCount+'  &nbsp;&nbsp;&nbsp; <span class="label label-danger data-dead">死亡</span>：'+data.deadCount+'</div>\n' +
+                        '  ';
+
+
+                    $(".core-data").html(html);
+
+                    return;
+                }
+                alert("获取数据失败");
+
+            },
+            error: function (res) {
+                if (res.state() === "rejected" && !this.url.includes(dataUrlBackup)) {
+                    this.url = this.url.replace(dataUrl, dataUrlBackup);
+                    $.ajax(this);
+                }
+            }
+        })
+
     };
 
 
