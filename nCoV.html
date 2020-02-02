@@ -204,7 +204,7 @@
                     itemWidth: 14,
                     itemHeight: 5,
                     itemGap: 1,
-                    data: ['确诊', '死亡', '治愈','疑似'],
+                    data: ['确诊', '治愈','死亡','疑似'],
                     right: '2%',
                     textStyle: {
                         fontSize: 12,
@@ -277,7 +277,7 @@
                     },
                     itemStyle: {
                         normal: {
-                            color: 'rgb(137,189,27)',
+                            color: '#f1a325',
                             borderColor: 'rgba(137,189,2,0.27)',
                             borderWidth: 12
 
@@ -311,7 +311,7 @@
                     },
                     itemStyle: {
                         normal: {
-                            color: 'rgb(0,136,212)',
+                            color: '#ea644a',
                             borderColor: 'rgba(0,136,212,0.2)',
                             borderWidth: 12
 
@@ -345,7 +345,7 @@
                     },
                     itemStyle: {
                         normal: {
-                            color: 'rgb(117,226,112)',
+                            color: '#03b8cf',
                             borderColor: 'rgba(77,136,212,0.2)',
                             borderWidth: 12
 
@@ -379,7 +379,7 @@
                     },
                     itemStyle: {
                         normal: {
-                            color: 'rgb(177,136,212)',
+                            color: '#38b03f',
                             borderColor: 'rgba(0,136,212,0.2)',
                             borderWidth: 12
 
@@ -501,7 +501,7 @@
                     itemWidth: 14,
                     itemHeight: 5,
                     itemGap: 1,
-                    data: ['确诊', '死亡', '治愈','疑似'],
+                    data: ['确诊','治愈', '死亡' ,'疑似'],
                     right: '2%',
                     textStyle: {
                         fontSize: 12,
@@ -574,7 +574,7 @@
                     },
                     itemStyle: {
                         normal: {
-                            color: 'rgb(137,189,27)',
+                            color: '#f1a325',
                             borderColor: 'rgba(137,189,2,0.27)',
                             borderWidth: 12
 
@@ -608,7 +608,7 @@
                     },
                     itemStyle: {
                         normal: {
-                            color: 'rgb(0,136,212)',
+                            color: '#ea644a',
                             borderColor: 'rgba(0,136,212,0.2)',
                             borderWidth: 12
 
@@ -642,7 +642,7 @@
                     },
                     itemStyle: {
                         normal: {
-                            color: 'rgb(117,226,112)',
+                            color: '#03b8cf',
                             borderColor: 'rgba(0,136,212,0.2)',
                             borderWidth: 12
 
@@ -676,7 +676,7 @@
                     },
                     itemStyle: {
                         normal: {
-                            color: 'rgb(177,136,212)',
+                            color: '#38b03f',
                             borderColor: 'rgba(0,136,212,0.2)',
                             borderWidth: 12
 
@@ -703,8 +703,10 @@
 
                     var html = ' 疫情数据:\n' +
                         '        <div>' +
-                        '<span class="label label-warning data-confirmed">确诊</span>：'+data.confirmedCount+' &nbsp;&nbsp;&nbsp; ' +
-                        '<span class="label label-success data-cured">治愈</span>：'+data.curedCount+'  &nbsp;&nbsp;&nbsp; <span class="label label-danger data-dead">死亡</span>：'+data.deadCount+'</div>\n' +
+                        '<span class="label label-warning data-confirmed">确诊</span>:'+data.confirmedCount+'&nbsp;&nbsp;' +
+                        '<span class="label label-success data-cured">治愈</span>:'+data.curedCount+' &nbsp;&nbsp; ' +
+                        '<span class="label label-danger data-dead">死亡</span>:'+data.deadCount+'&nbsp;&nbsp;' +
+                        '<span class="label label-info data-dead">疑似</span>:'+data.suspectedCount+'</div>\n' +
                         '  ';
 
 
