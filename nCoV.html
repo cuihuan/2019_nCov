@@ -292,7 +292,41 @@
                         }
                     },
                     data: confirmedNCoV
-                }, {
+                },{
+                                    name: '治愈',
+                                    type: 'line',
+                                    smooth: true,
+                                    symbol: 'circle',
+                                    symbolSize: 5,
+                                    showSymbol: false,
+                                    lineStyle: {
+                                        normal: {
+                                            width: 1
+                                        }
+                                    },
+                                    areaStyle: {
+                                        normal: {
+                                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                                offset: 0,
+                                                color: 'rgba(0, 136, 212, 0.3)'
+                                            }, {
+                                                offset: 0.8,
+                                                color: 'rgba(0, 136, 212, 0)'
+                                            }], false),
+                                            shadowColor: 'rgba(0, 0, 0, 0.1)',
+                                            shadowBlur: 10
+                                        }
+                                    },
+                                    itemStyle: {
+                                        normal: {
+                                            color: '#38b03f',
+                                            borderColor: 'rgba(0,136,212,0.2)',
+                                            borderWidth: 12
+
+                                        }
+                                    },
+                                    data: curedNCoV
+                                }, {
                     name: '死亡',
                     type: 'line',
                     smooth: true,
@@ -326,76 +360,42 @@
                         }
                     },
                     data: deadNCoV
-                },{
-                    name: '疑似',
-                    type: 'line',
-                    smooth: true,
-                    symbol: 'circle',
-                    symbolSize: 5,
-                    showSymbol: false,
-                    lineStyle: {
-                        normal: {
-                            width: 1
-                        }
-                    },
-                    areaStyle: {
-                        normal: {
-                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                offset: 0,
-                                color: 'rgba(0, 136, 212, 0.3)'
-                            }, {
-                                offset: 0.8,
-                                color: 'rgba(0, 136, 212, 0)'
-                            }], false),
-                            shadowColor: 'rgba(0, 0, 0, 0.1)',
-                            shadowBlur: 10
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: '#03b8cf',
-                            borderColor: 'rgba(77,136,212,0.2)',
-                            borderWidth: 12
-
-                        }
-                    },
-                    data: suspectedNCoV
-                }, {
-                    name: '治愈',
-                    type: 'line',
-                    smooth: true,
-                    symbol: 'circle',
-                    symbolSize: 5,
-                    showSymbol: false,
-                    lineStyle: {
-                        normal: {
-                            width: 1
-                        }
-                    },
-                    areaStyle: {
-                        normal: {
-                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                offset: 0,
-                                color: 'rgba(0, 136, 212, 0.3)'
-                            }, {
-                                offset: 0.8,
-                                color: 'rgba(0, 136, 212, 0)'
-                            }], false),
-                            shadowColor: 'rgba(0, 0, 0, 0.1)',
-                            shadowBlur: 10
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: '#38b03f',
-                            borderColor: 'rgba(0,136,212,0.2)',
-                            borderWidth: 12
-
-                        }
-                    },
-                    data: curedNCoV
                 }
-                ]
+                    , {
+                        name: '疑似',
+                        type: 'line',
+                        smooth: true,
+                        symbol: 'circle',
+                        symbolSize: 5,
+                        showSymbol: false,
+                        lineStyle: {
+                            normal: {
+                                width: 1
+                            }
+                        },
+                        areaStyle: {
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: 'rgba(0, 136, 212, 0.3)'
+                                }, {
+                                    offset: 0.8,
+                                    color: 'rgba(0, 136, 212, 0)'
+                                }], false),
+                                shadowColor: 'rgba(0, 0, 0, 0.1)',
+                                shadowBlur: 10
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                color: '#03b8cf',
+                                borderColor: 'rgba(77,136,212,0.2)',
+                                borderWidth: 12
+
+                            }
+                        },
+                        data: suspectedNCoV
+                    }]
             };
             orderTraceContainer.hideLoading();
             orderTraceContainer.setOption(echartsOption);
@@ -597,74 +597,6 @@
                     },
                     data: confirmedNCoV
                 }, {
-                    name: '死亡',
-                    type: 'line',
-                    smooth: true,
-                    symbol: 'circle',
-                    symbolSize: 5,
-                    showSymbol: false,
-                    lineStyle: {
-                        normal: {
-                            width: 1
-                        }
-                    },
-                    areaStyle: {
-                        normal: {
-                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                offset: 0,
-                                color: 'rgba(0, 136, 212, 0.3)'
-                            }, {
-                                offset: 0.8,
-                                color: 'rgba(0, 136, 212, 0)'
-                            }], false),
-                            shadowColor: 'rgba(0, 0, 0, 0.1)',
-                            shadowBlur: 10
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: '#ea644a',
-                            borderColor: 'rgba(0,136,212,0.2)',
-                            borderWidth: 12
-
-                        }
-                    },
-                    data: deadNCoV
-                },{
-                    name: '疑似',
-                    type: 'line',
-                    smooth: true,
-                    symbol: 'circle',
-                    symbolSize: 5,
-                    showSymbol: false,
-                    lineStyle: {
-                        normal: {
-                            width: 1
-                        }
-                    },
-                    areaStyle: {
-                        normal: {
-                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                offset: 0,
-                                color: 'rgba(0, 136, 212, 0.3)'
-                            }, {
-                                offset: 0.8,
-                                color: 'rgba(0, 136, 212, 0)'
-                            }], false),
-                            shadowColor: 'rgba(0, 0, 0, 0.1)',
-                            shadowBlur: 10
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            color: '#03b8cf',
-                            borderColor: 'rgba(0,136,212,0.2)',
-                            borderWidth: 12
-
-                        }
-                    },
-                    data: suspectedNCoV
-                }, {
                     name: '治愈',
                     type: 'line',
                     smooth: true,
@@ -699,7 +631,75 @@
                     },
                     data: curedNCoV
                 }
-                ]
+                    , {
+                        name: '死亡',
+                        type: 'line',
+                        smooth: true,
+                        symbol: 'circle',
+                        symbolSize: 5,
+                        showSymbol: false,
+                        lineStyle: {
+                            normal: {
+                                width: 1
+                            }
+                        },
+                        areaStyle: {
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: 'rgba(0, 136, 212, 0.3)'
+                                }, {
+                                    offset: 0.8,
+                                    color: 'rgba(0, 136, 212, 0)'
+                                }], false),
+                                shadowColor: 'rgba(0, 0, 0, 0.1)',
+                                shadowBlur: 10
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                color: '#ea644a',
+                                borderColor: 'rgba(0,136,212,0.2)',
+                                borderWidth: 12
+
+                            }
+                        },
+                        data: deadNCoV
+                    }, {
+                        name: '疑似',
+                        type: 'line',
+                        smooth: true,
+                        symbol: 'circle',
+                        symbolSize: 5,
+                        showSymbol: false,
+                        lineStyle: {
+                            normal: {
+                                width: 1
+                            }
+                        },
+                        areaStyle: {
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: 'rgba(0, 136, 212, 0.3)'
+                                }, {
+                                    offset: 0.8,
+                                    color: 'rgba(0, 136, 212, 0)'
+                                }], false),
+                                shadowColor: 'rgba(0, 0, 0, 0.1)',
+                                shadowBlur: 10
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                color: '#03b8cf',
+                                borderColor: 'rgba(0,136,212,0.2)',
+                                borderWidth: 12
+
+                            }
+                        },
+                        data: suspectedNCoV
+                    }]
             };
             orderTraceContainer.hideLoading();
             orderTraceContainer.setOption(echartsOption);
