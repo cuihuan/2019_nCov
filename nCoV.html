@@ -373,6 +373,13 @@
                     var curedNCoV = [];
                     var deadNCoV = [];
 
+                    // init pre data
+                    dataNCoV['2020/1/24'] = {"confirm": 897, "suspect": 1076, "cure": 36, "dead": 26};
+                    dataNCoV['2020/1/25'] = {"confirm": 1408, "suspect": 2032, "cure": 39, "dead": 42};
+                    dataNCoV['2020/1/26'] = {"confirm": 2076, "suspect": 2692, "cure": 49, "dead": 56};
+                    dataNCoV['2020/1/27'] = {"confirm": 2857, "suspect": 5794, "cure": 56, "dead": 82};
+                    dataNCoV['2020/1/28'] = {"confirm": 4630, "suspect": 6973, "cure": 73, "dead": 106};
+
                     for (var i in chartData) {
                         var dataTime = new Date(chartData[i].updateTime);
                         var showTime = [dataTime.getFullYear(), dataTime.getMonth() + 1, dataTime.getDate()].join('/');
