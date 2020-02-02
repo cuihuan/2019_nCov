@@ -256,12 +256,20 @@
                     smooth: true,
                     symbol: 'circle',
                     symbolSize: 5,
-                    showSymbol: false,
+                    showSymbol: true,
                     lineStyle: {
                         normal: {
                             width: 1
                         }
                     },
+                    label: {
+                        show: true,
+                        position: 'top',
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    },
+
                     areaStyle: {
                         normal: {
                             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -553,10 +561,17 @@
                     smooth: true,
                     symbol: 'circle',
                     symbolSize: 5,
-                    showSymbol: false,
+                    showSymbol: true,
                     lineStyle: {
                         normal: {
                             width: 1
+                        }
+                    },
+                    label: {
+                        show: true,
+                        position: 'top',
+                        textStyle: {
+                            color: '#fff'
                         }
                     },
                     areaStyle: {
