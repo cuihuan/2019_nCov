@@ -3,7 +3,8 @@
 重点针对和sars的对比以及分省份数据趋势可视化。
 
 **页面地址**：http://cuihuan.net/wuhan/news.html
-本项目遵循MIT开源许可，同时，若直接引用部署，烦请在您的项目中声明引用。
+
+**本项目遵循MIT开源许可，同时，若直接引用部署，烦请在您的项目中声明引用!**
 
 <img  width="150px" src="http://cuihuan.net/wuhan/static/images/demo_hubei.png"  alt="demo_hubei"/> <img width="150px" src="http://cuihuan.net/wuhan/static/images/demo_sars.png"  alt="demo_sars"/> <img width="150px" src="http://cuihuan.net/wuhan/static/images/demo_all.png"  alt="demo_all"/> <img width="150px" src="http://cuihuan.net/wuhan/static/images/demo_rumors.png"  alt="demo_rumors"/> <img width="150px" src="http://cuihuan.net/wuhan/static/images/demo_rumors2.png"  alt="demo_rumors2"/>
 
