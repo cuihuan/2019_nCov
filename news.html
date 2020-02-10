@@ -279,7 +279,7 @@
 
                     for (var i in chartData) {
                         var dataTime = new Date(chartData[i].updateTime);
-                        var showTime = [dataTime.getFullYear(), dataTime.getMonth() + 1, dataTime.getDate()].join('/');
+                        var showTime = [dataTime.getFullYear(), dataTime.getMonth() + 1, ("0" + dataTime.getDate()).slice(-2)].join('/');
                         if (dateTrend.includes(showTime)) {
                             continue;
                         }
@@ -291,7 +291,11 @@
 
                     // 时间排序
                     const dataListOrdered = {};
-                    Object.keys(datalist).sort().forEach(function (key) {
+                    Object.keys(datalist).sort((function (a, b) {
+                        a = a.split('/').join('');
+                        b = b.split('/').join('');
+                        return a > b ? 1 : a < b ? -1 : 0;
+                    })).forEach(function (key) {
                         dataListOrdered[key] = datalist[key];
                     });
 
@@ -303,15 +307,13 @@
                         var t = new Date(i);
                         t.setDate(t.getDate() - 1);
                         // var dataTime = new Date(chartData[i].updateTime);
-                        var yesterday = [t.getFullYear(), t.getMonth() + 1, t.getDate()].join('/');
+                        var yesterday = [t.getFullYear(), t.getMonth() + 1, ("0" + t.getDate()).slice(-2)].join('/');
                         if (!dataListOrdered[yesterday]) {
                             continue;
                         }
 
                         dateAdd.push(i);
                         confirmAdd.push(dataListOrdered[i] - dataListOrdered[yesterday]);
-
-
                     }
 
                     var title = "确诊总量(" + chartData[0].country + "-" + chartData[0].provinceShortName + ")";

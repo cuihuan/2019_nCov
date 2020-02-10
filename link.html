@@ -121,7 +121,7 @@
 
                     for (var i in chartData) {
                         var dataTime = new Date(chartData[i].updateTime);
-                        var showTime = [dataTime.getFullYear(), dataTime.getMonth() + 1, dataTime.getDate()].join('/');
+                        var showTime = [dataTime.getFullYear(), dataTime.getMonth() + 1, ("0" + dataTime.getDate()).slice(-2)].join('/');
                         var confirmedCount = chartData[i].confirmedCount ? chartData[i].confirmedCount : chartData[i].confirmed;
                         var suspectedCount = chartData[i].suspectedCount ? chartData[i].suspectedCount : chartData[i].suspectedCount;
                         var curedCount = chartData[i].curedCount ? chartData[i].curedCount : chartData[i].curedCount;
@@ -139,7 +139,11 @@
 
                     // 时间排序
                     const dataNCoVOrdered = {};
-                    Object.keys(dataNCoV).sort().forEach(function (key) {
+                    Object.keys(dataNCoV).sort((function (a, b) {
+                        a = a.split('/').join('');
+                        b = b.split('/').join('');
+                        return a > b ? 1 : a < b ? -1 : 0;
+                    })).forEach(function (key) {
                         dataNCoVOrdered[key] = dataNCoV[key];
                     });
 
@@ -368,7 +372,7 @@
 
                     for (var i in chartData) {
                         var dataTime = new Date(chartData[i].updateTime);
-                        var showTime = [dataTime.getFullYear(), dataTime.getMonth() + 1, dataTime.getDate()].join('/');
+                        var showTime = [dataTime.getFullYear(), dataTime.getMonth() + 1, ("0" + dataTime.getDate()).slice(-2)].join('/');
                         var confirmedCount = chartData[i].confirmedCount ? chartData[i].confirmedCount : chartData[i].confirmed;
                         var suspectedCount = chartData[i].suspectedCount ? chartData[i].suspectedCount : chartData[i].suspectedCount;
                         var curedCount = chartData[i].curedCount ? chartData[i].curedCount : chartData[i].curedCount;
@@ -386,7 +390,11 @@
 
                     // 时间排序
                     const dataNCoVOrdered = {};
-                    Object.keys(dataNCoV).sort().forEach(function (key) {
+                    Object.keys(dataNCoV).sort((function (a, b) {
+                        a = a.split('/').join('');
+                        b = b.split('/').join('');
+                        return a > b ? 1 : a < b ? -1 : 0;
+                    })).forEach(function (key) {
                         dataNCoVOrdered[key] = dataNCoV[key];
                     });
 
