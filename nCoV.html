@@ -208,7 +208,7 @@
                     itemWidth: 14,
                     itemHeight: 5,
                     itemGap: 1,
-                    data: ['确诊', '治愈','死亡','疑似'],
+                    data: ['确诊', '治愈','死亡'],
                     right: '2%',
                     textStyle: {
                         fontSize: 12,
@@ -330,8 +330,7 @@
                                         }
                                     },
                                     data: curedNCoV
-                                }, {
-                    name: '死亡',
+                                }, {name: '死亡',
                     type: 'line',
                     smooth: true,
                     symbol: 'circle',
@@ -365,41 +364,7 @@
                     },
                     data: deadNCoV
                 }
-                    , {
-                        name: '疑似',
-                        type: 'line',
-                        smooth: true,
-                        symbol: 'circle',
-                        symbolSize: 5,
-                        showSymbol: false,
-                        lineStyle: {
-                            normal: {
-                                width: 1
-                            }
-                        },
-                        areaStyle: {
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    offset: 0,
-                                    color: 'rgba(0, 136, 212, 0.3)'
-                                }, {
-                                    offset: 0.8,
-                                    color: 'rgba(0, 136, 212, 0)'
-                                }], false),
-                                shadowColor: 'rgba(0, 0, 0, 0.1)',
-                                shadowBlur: 10
-                            }
-                        },
-                        itemStyle: {
-                            normal: {
-                                color: '#03b8cf',
-                                borderColor: 'rgba(77,136,212,0.2)',
-                                borderWidth: 12
-
-                            }
-                        },
-                        data: suspectedNCoV
-                    }]
+                    ]
             };
             orderTraceContainer.hideLoading();
             orderTraceContainer.setOption(echartsOption);
@@ -517,7 +482,7 @@
                     itemWidth: 14,
                     itemHeight: 5,
                     itemGap: 1,
-                    data: ['确诊','治愈', '死亡' ,'疑似'],
+                    data: ['确诊','治愈', '死亡'],
                     right: '2%',
                     textStyle: {
                         fontSize: 12,
@@ -673,40 +638,6 @@
                             }
                         },
                         data: deadNCoV
-                    }, {
-                        name: '疑似',
-                        type: 'line',
-                        smooth: true,
-                        symbol: 'circle',
-                        symbolSize: 5,
-                        showSymbol: false,
-                        lineStyle: {
-                            normal: {
-                                width: 1
-                            }
-                        },
-                        areaStyle: {
-                            normal: {
-                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    offset: 0,
-                                    color: 'rgba(0, 136, 212, 0.3)'
-                                }, {
-                                    offset: 0.8,
-                                    color: 'rgba(0, 136, 212, 0)'
-                                }], false),
-                                shadowColor: 'rgba(0, 0, 0, 0.1)',
-                                shadowBlur: 10
-                            }
-                        },
-                        itemStyle: {
-                            normal: {
-                                color: '#03b8cf',
-                                borderColor: 'rgba(0,136,212,0.2)',
-                                borderWidth: 12
-
-                            }
-                        },
-                        data: suspectedNCoV
                     }]
             };
             orderTraceContainer.hideLoading();
